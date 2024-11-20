@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>473</width>
+    <height>316</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
   <widget class="QCheckBox" name="checkBoxSuavizado">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>120</x>
      <y>10</y>
      <width>70</width>
      <height>17</height>
@@ -42,7 +42,7 @@
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>100</x>
      <y>10</y>
      <width>20</width>
      <height>81</height>
@@ -55,7 +55,7 @@
   <widget class="QLineEdit" name="LEsuavizadoX">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>170</x>
      <y>30</y>
      <width>21</width>
      <height>20</height>
@@ -68,7 +68,7 @@
   <widget class="QLineEdit" name="LEsuavizadoY">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>170</x>
      <y>60</y>
      <width>21</width>
      <height>20</height>
@@ -81,7 +81,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>120</x>
      <y>30</y>
      <width>47</width>
      <height>16</height>
@@ -94,7 +94,7 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>120</x>
      <y>60</y>
      <width>47</width>
      <height>16</height>
@@ -107,10 +107,10 @@
   <widget class="Line" name="line_3">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>190</x>
      <y>10</y>
      <width>20</width>
-     <height>81</height>
+     <height>151</height>
     </rect>
    </property>
    <property name="orientation">
@@ -135,7 +135,7 @@
     <rect>
      <x>210</x>
      <y>30</y>
-     <width>47</width>
+     <width>71</width>
      <height>16</height>
     </rect>
    </property>
@@ -148,7 +148,7 @@
     <rect>
      <x>210</x>
      <y>60</y>
-     <width>51</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -159,7 +159,7 @@
   <widget class="QLineEdit" name="LEumbralInf">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>290</x>
      <y>30</y>
      <width>31</width>
      <height>20</height>
@@ -172,7 +172,7 @@
   <widget class="QLineEdit" name="LEumbralSup">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>290</x>
      <y>60</y>
      <width>31</width>
      <height>20</height>
@@ -185,10 +185,10 @@
   <widget class="Line" name="line_4">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>320</x>
      <y>10</y>
      <width>20</width>
-     <height>81</height>
+     <height>151</height>
     </rect>
    </property>
    <property name="orientation">
@@ -200,7 +200,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>70</width>
+     <width>101</width>
      <height>17</height>
     </rect>
    </property>
@@ -213,7 +213,7 @@
     <rect>
      <x>10</x>
      <y>30</y>
-     <width>47</width>
+     <width>51</width>
      <height>16</height>
     </rect>
    </property>
@@ -224,7 +224,7 @@
   <widget class="QLineEdit" name="LEumbralBin">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>70</x>
      <y>30</y>
      <width>31</width>
      <height>20</height>
@@ -255,6 +255,80 @@
    </property>
    <property name="text">
     <string>Seleccionar cámara</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LEumbralSupThr">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>140</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>255</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LEumbralInfThr">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>110</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>100</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>140</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>umbral sup</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBoxCannyThr">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>90</y>
+     <width>91</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>threshold</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>110</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>umbral inf</string>
    </property>
   </widget>
  </widget>

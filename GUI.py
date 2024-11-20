@@ -40,6 +40,7 @@ class GUI(QMainWindow):
         if self.ui.checkBoxCanny.isChecked():
             if self.ui.LEumbralInf.text()!="" and self.ui.LEumbralSup.text()!="":
                 colaCanny.put([int(self.ui.LEumbralInf.text()),int(self.ui.LEumbralSup.text())])
+                self.
         else:
             colaCanny.put(None)
 
