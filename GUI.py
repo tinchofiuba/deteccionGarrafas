@@ -25,11 +25,14 @@ class GUI(QMainWindow):
         self.ui.checkBoxCanny.stateChanged.connect(self.valoresCanny)
         self.ui.checkBoxSuavizado.stateChanged.connect(self.valoresGauss)
         self.ui.checkBoxBinarizado.stateChanged.connect(self.valoresBin)
+        self.ui.checkBoxCannyThr.stateChanged.connect(self.valoresCanny)
         self.ui.LEumbralInf.textChanged.connect(self.valoresCanny)
         self.ui.LEumbralSup.textChanged.connect(self.valoresCanny)
         self.ui.LEsuavizadoX.textChanged.connect(self.valoresGauss)
         self.ui.LEsuavizadoY.textChanged.connect(self.valoresGauss)
         self.ui.LEumbralBin.textChanged.connect(self.valoresBin)
+        self.ui.LEumbralInfThr.textChanged.connect(self.valoresCanny)
+        self.ui.LEumbralSupThr.textChanged.connect(self.valoresCanny)
         
     def capturaView(self):
         self.ui.captura.setText("Detener captura")
@@ -39,9 +42,34 @@ class GUI(QMainWindow):
     def valoresCanny(self):
         if self.ui.checkBoxCanny.isChecked():
             if self.ui.LEumbralInf.text()!="" and self.ui.LEumbralSup.text()!="":
-                colaCanny.put([int(self.ui.LEumbralInf.text()),int(self.ui.LEumbralSup.text())])
-                self.
+                umbralInf=int(self.ui.LEumbralInf.text())
+                umbralSup=int(self.ui.LEumbralSup.text())
+                self.ui.checkBoxCannyThr.setEnabled(True)
+                print("canny")
+                if self.ui.checkBoxCannyThr.isChecked():
+                    self.ui.LEumbralInfThr.setEnabled(True)
+                    self.ui.LEumbralSupThr.setEnabled(True)
+                    print("entro")
+                    if self.ui.LEumbralInfThr.text()!="" and self.ui.LEumbralSupThr.text()!="":
+                        umbralInfThr=int(self.ui.LEumbralInfThr.text())
+                        umbralSupThr=int(self.ui.LEumbralSupThr.text())
+                        if colaCanny.empty()==False:
+                            #vacío la cola
+                            colaCanny.get()
+                            colaCanny.put([umbralInf,umbralSup,umbralInfThr,umbralSupThr])
+                        else:
+                            colaCanny.put([umbralInf,umbralSup,umbralInfThr,umbralSupThr])
+                else:
+                    self.ui.LEumbralInfThr.setEnabled(False)
+                    self.ui.LEumbralSupThr.setEnabled(False)
+                    print("no entro")
+                    if colaCanny.empty()==False:
+                        colaCanny.get()
+                        colaCanny.put([umbralInf,umbralSup]) 
+                    else:
+                        colaCanny.put([umbralInf,umbralSup])
         else:
+            self.ui.checkBoxCannyThr.setEnabled(False)
             colaCanny.put(None)
 
     def valoresGauss(self):

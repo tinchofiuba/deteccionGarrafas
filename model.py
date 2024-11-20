@@ -20,9 +20,14 @@ def filtradoGauss(img, kernelSize:list):
     kernelSize = [max(1, k) | 1 for k in kernelSize]
     return cv2.GaussianBlur(img, (kernelSize[0], kernelSize[1]), 0)
 
-def canny(img, umbral1:int, umbral2:int):
+def canny(img, umbral1:int, umbral2:int, umbralThr1:int, umbralThr2:int):
     gray=img2Gray(img)
-    return cv2.Canny(gray, umbral1, umbral2)
+    print(umbralThr1,umbralThr2)
+    if umbralThr1!=0 and umbralThr2!=0:
+        _,th=cv2.threshold(gray, umbralThr1,umbralThr2,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        return cv2.Canny(th, umbral1, umbral2)
+    else:
+        return cv2.Canny(gray, umbral1, umbral2)
 
 def capturaModel(camara:str):
     global configBin
@@ -48,7 +53,10 @@ def capturaModel(camara:str):
         if configGauss!=None:
             frame=filtradoGauss(frame,configGauss)
         if configCanny!=None:
-            frame=canny(frame,configCanny[0],configCanny[1])
+            if len(configCanny)==2:
+                frame=canny(frame,configCanny[0],configCanny[1],0,0)
+            else:
+                frame=canny(frame,configCanny[0],configCanny[1],configCanny[2],configCanny[3])
         cv2.imshow('Captura', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
