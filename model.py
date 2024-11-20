@@ -28,7 +28,7 @@ def canny(img, umbral1:int, umbral2:int, umbralThr1:int, umbralThr2:int):
         return cv2.Canny(th, umbral1, umbral2)
     else:
         return cv2.Canny(gray, umbral1, umbral2)
-
+    
 def capturaModel(camara:str):
     global configBin
     global configGauss

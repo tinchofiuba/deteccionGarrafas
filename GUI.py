@@ -5,11 +5,12 @@ from PyQt5.QtGui import QPixmap
 import sys
 import os
 from defaultGUI import Ui_Dialog
-import model
-from model import colaCanny,colaBin,colaGauss,capturaModel
+from model import colaCanny,colaBin,colaGauss,capturaModel #,capturaFoto
+from PyQt5.QtCore import pyqtSignal, QThread
 import cv2
 #creo la clase que hereda de QMainWindow y de la interfaz grafica
 class GUI(QMainWindow):
+    iniciarCaptura = pyqtSignal(str) #señal para comunicarme con el view y prender la camara
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_Dialog()
@@ -33,11 +34,28 @@ class GUI(QMainWindow):
         self.ui.LEumbralBin.textChanged.connect(self.valoresBin)
         self.ui.LEumbralInfThr.textChanged.connect(self.valoresCanny)
         self.ui.LEumbralSupThr.textChanged.connect(self.valoresCanny)
+        self.ui.guardarCaptura.clicked.connect(self.guardarCaptura)
+        self.ui.labelTildeVerde.setPixmap(QPixmap("/home/martin/repos/deteccionGarrafas/imagenes/tildeVerde_20_20.png"))
+        self.ui.labelTildeVerde.hide()
         
+    def guardarCaptura(self):
+        self.ui.labelTildeVerde.setVisible(True)
+        #self.model.capturaFoto()
+        QtCore.QTimer.singleShot(500, self.ocultarTilde)
+        
+    def ocultarTilde(self):
+        self.ui.labelTildeVerde.hide()
+
     def capturaView(self):
-        self.ui.captura.setText("Detener captura")
-        capturaModel(self.ui.comboBoxCamara.currentText())
-        #configBotones
+        if self.ui.captura.text()=="Detener captura":
+            self.ui.captura.setText("Iniciar captura")
+            self.ui.guardarCaptura.setEnabled(False)
+            cv2.destroyAllWindows()
+        else:
+            self.ui.captura.setText("Detener captura")
+            self.ui.guardarCaptura.setEnabled(True)
+            #self.iniciarCaptura.emit(self.ui.comboBoxCamara.currentText()) #emito al model la camara seleccionada
+            capturaModel(self.ui.comboBoxCamara.currentText())
     
     def valoresCanny(self):
         if self.ui.checkBoxCanny.isChecked():
